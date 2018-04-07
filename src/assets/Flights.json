@@ -1,0 +1,87 @@
+[
+	{
+		"price": 5600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Delhi",
+  			"code": "DEL"
+  		},
+  		"destination": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"flightNumber": "AI-201",
+  		"departureTime": "07:15 AM",
+  		"arrivalTime": "11:30 AM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	},
+	{
+		"price": 5600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Delhi",
+  			"code": "DEL"
+  		},
+  		"destination": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"flightNumber": "AI-201",
+  		"departureTime": "07:15 AM",
+  		"arrivalTime": "11:30 AM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	},
+	{
+		"price": 5600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Delhi",
+  			"code": "DEL"
+  		},
+  		"destination": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"flightNumber": "AI-201",
+  		"departureTime": "07:15 AM",
+  		"arrivalTime": "11:30 AM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	},
+	{
+		"price": 5600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Delhi",
+  			"code": "DEL"
+  		},
+  		"destination": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"flightNumber": "AI-201",
+  		"departureTime": "07:15 AM",
+  		"arrivalTime": "11:30 AM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	},
+	{
+		"price": 5600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Delhi",
+  			"code": "DEL"
+  		},
+  		"destination": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"flightNumber": "AI-201",
+  		"departureTime": "07:15 AM",
+  		"arrivalTime": "11:30 AM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	}
+]

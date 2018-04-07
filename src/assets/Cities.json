@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Delhi",
+		"code": "DEL"
+	},
+	{
+		"name": "Mumbai",
+		"code": "MUM"
+	},
+	{
+		"name": "Pune",
+		"code": "PNQ"
+	},
+	{
+		"name": "Chandigarh",
+		"code": "CHD"
+	},
+	{
+		"name": "Bengaluru",
+		"code": "BGLR"
+	},
+	{
+		"name": "Chennai",
+		"code": "CHN"
+	},
+	{
+		"name": "Amritsar",
+		"code": "AMR"
+	}
+]

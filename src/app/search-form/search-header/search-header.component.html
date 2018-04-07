@@ -1,0 +1,7 @@
+<div class="search-result-header" *ngIf="result">
+	<h1>Your Search Results will display here</h1>
+</div>
+<div class="search-result-header">
+	<h1>{{result.origin.name}} > {{result.destination.name}} </h1> <h1 *ngIf="result.isReturn"> > {{result.origin.name}}</h1>
+	<p> <span>Depart: {{result.departDate}}</span><span *ngIf="result.isReturn">Return: {{result.returnDate}}</span></p>
+</div>
