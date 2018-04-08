@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { JourneyDetails } from '../../entities/JourneyDetails';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-result-card',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./result-card.component.scss']
 })
 export class ResultCardComponent implements OnInit {
-
+  @Input() journey: JourneyDetails;
   constructor() { }
 
   ngOnInit() {
   }
-
+  bookJourney(journey: JourneyDetails) {
+    alert('Flight booked');
+  }
 }

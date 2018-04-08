@@ -1,3 +1,5 @@
 <div class="result-set">
-	<app-result-card *ngFor="let flight of result.flights"></app-result-card>
+	<div class="result-card" *ngFor="let journey of journeys">
+		<app-result-card  [journey]="journey"></app-result-card>
+	</div>
 </div>

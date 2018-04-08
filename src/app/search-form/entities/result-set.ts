@@ -1,3 +1,4 @@
+import { JourneyDetails } from './JourneyDetails';
 import { City } from './city';
 import { Flight } from './flight';
 export class ResultSet {
@@ -6,5 +7,5 @@ export class ResultSet {
     departDate: string;
     isReturn: boolean;
     returnDate: string;
-    resultSet: Flight[];
+    resultSet: JourneyDetails[];
 }

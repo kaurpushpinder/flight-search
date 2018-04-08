@@ -11,6 +11,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchHeaderComponent } from './search-form/search-header/search-header.component';
 import { SearchResultComponent } from './search-form/search-result/search-result.component';
 import { ResultCardComponent } from './search-form/search-result/result-card/result-card.component';
+import { FlightInfoComponent } from './search-form/search-result/flight-info/flight-info.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ResultCardComponent } from './search-form/search-result/result-card/res
     SearchFormComponent,
     SearchHeaderComponent,
     SearchResultComponent,
-    ResultCardComponent
+    ResultCardComponent,
+    FlightInfoComponent
   ],
   imports: [
     BrowserModule,

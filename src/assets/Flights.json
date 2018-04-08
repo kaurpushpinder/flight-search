@@ -17,7 +17,7 @@
   		"arrivalDate": "11/04/2018"
 	},
 	{
-		"price": 5600,
+		"price": 4600,
   		"seats": 4,
   		"origin": {
   			"name": "Delhi",
@@ -27,9 +27,60 @@
   			"name": "Pune",
   			"code": "PNQ"
   		},
-  		"flightNumber": "AI-201",
+  		"flightNumber": "AI-202",
+  		"departureTime": "09:15 AM",
+  		"arrivalTime": "03:30 PM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	},
+	{
+		"price": 2600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Delhi",
+  			"code": "DEL"
+  		},
+  		"destination": {
+  			"name": "Amritsar",
+  			"code": "AMR"
+  		},
+  		"flightNumber": "AI-203",
+  		"departureTime": "07:35 AM",
+  		"arrivalTime": "10:00 AM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	},
+	{
+		"price": 4600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Mumbai",
+  			"code": "MUM"
+  		},
+  		"destination": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"flightNumber": "AI-205",
+  		"departureTime": "05:15 PM",
+  		"arrivalTime": "07:30 PM",
+  		"departureDate": "11/04/2018",
+  		"arrivalDate": "11/04/2018"
+	},
+	{
+		"price": 5600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"destination": {
+  			"name": "Mumbai",
+  			"code": "MUM"
+  		},
+  		"flightNumber": "AI-206",
   		"departureTime": "07:15 AM",
-  		"arrivalTime": "11:30 AM",
+  		"arrivalTime": "9:30 AM",
   		"departureDate": "11/04/2018",
   		"arrivalDate": "11/04/2018"
 	},
@@ -47,11 +98,11 @@
   		"flightNumber": "AI-201",
   		"departureTime": "07:15 AM",
   		"arrivalTime": "11:30 AM",
-  		"departureDate": "11/04/2018",
-  		"arrivalDate": "11/04/2018"
+  		"departureDate": "12/04/2018",
+  		"arrivalDate": "12/04/2018"
 	},
 	{
-		"price": 5600,
+		"price": 4600,
   		"seats": 4,
   		"origin": {
   			"name": "Delhi",
@@ -61,27 +112,61 @@
   			"name": "Pune",
   			"code": "PNQ"
   		},
-  		"flightNumber": "AI-201",
-  		"departureTime": "07:15 AM",
-  		"arrivalTime": "11:30 AM",
-  		"departureDate": "11/04/2018",
-  		"arrivalDate": "11/04/2018"
+  		"flightNumber": "AI-202",
+  		"departureTime": "09:15 AM",
+  		"arrivalTime": "03:30 PM",
+  		"departureDate": "12/04/2018",
+  		"arrivalDate": "12/04/2018"
 	},
 	{
-		"price": 5600,
+		"price": 2600,
   		"seats": 4,
   		"origin": {
   			"name": "Delhi",
   			"code": "DEL"
   		},
   		"destination": {
+  			"name": "Amritsar",
+  			"code": "AMR"
+  		},
+  		"flightNumber": "AI-203",
+  		"departureTime": "07:35 AM",
+  		"arrivalTime": "10:00 AM",
+  		"departureDate": "12/04/2018",
+  		"arrivalDate": "12/04/2018"
+	},
+	{
+		"price": 4600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Mumbai",
+  			"code": "MUM"
+  		},
+  		"destination": {
   			"name": "Pune",
   			"code": "PNQ"
   		},
-  		"flightNumber": "AI-201",
+  		"flightNumber": "AI-205",
+  		"departureTime": "05:15 PM",
+  		"arrivalTime": "07:30 PM",
+  		"departureDate": "12/04/2018",
+  		"arrivalDate": "12/04/2018"
+	},
+	{
+		"price": 5600,
+  		"seats": 4,
+  		"origin": {
+  			"name": "Pune",
+  			"code": "PNQ"
+  		},
+  		"destination": {
+  			"name": "Mumbai",
+  			"code": "MUM"
+  		},
+  		"flightNumber": "AI-206",
   		"departureTime": "07:15 AM",
-  		"arrivalTime": "11:30 AM",
-  		"departureDate": "11/04/2018",
-  		"arrivalDate": "11/04/2018"
+  		"arrivalTime": "9:30 AM",
+  		"departureDate": "12/04/2018",
+  		"arrivalDate": "12/04/2018"
 	}
 ]

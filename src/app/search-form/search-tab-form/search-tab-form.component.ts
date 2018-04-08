@@ -42,7 +42,7 @@ export class SearchTabFormComponent implements OnInit {
   search (): void  {
     console.log(this.origin.code.value);
     console.log(this.destination.code.value);
-    console.log(this.flightService.setFlights(this.origin.code.value, this.destination.code.value));
+    this.flightService.setFlights(this.origin.code.value, this.destination.code.value, '', '');
   }
 
 }

@@ -1,4 +1,4 @@
-import { Flight } from '../entities/flight';
+import { JourneyDetails } from '../entities/JourneyDetails';
 import { FlightSearchService } from '../services/flight-search.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent implements OnInit {
-  flights: Flight[];
   constructor(private flightService: FlightSearchService) { }
 
   ngOnInit() {
-    this.flights = this.flightService.getFlights();
   }
-
+  get journeys(): JourneyDetails[] { return this.flightService.getJourneys(); }
 }

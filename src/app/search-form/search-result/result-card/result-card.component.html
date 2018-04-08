@@ -1,3 +1,11 @@
-<p>
-  result-card works!
-</p>
+<div class="journey-detail">
+<div class="data">
+	<h1 class="price">{{journey.price}}</h1>
+	<div [ngClass]="{'width-50': journey.returnJourney }"><flight-info [flight]="journey.startJourney"></flight-info></div>
+	<div class="width-50" *ngIf="journey.returnJourney"><flight-info [flight]="journey.returnJourney"></flight-info></div>
+</div>
+<div class="action">
+	<div class="icon"></div>
+	<div class="button" [click]="bookJourney(journey)">Book this flight</div>
+</div>
+</div>
