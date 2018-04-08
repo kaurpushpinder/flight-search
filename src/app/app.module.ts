@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FlightSearchService } from './search-form/services/flight-search.service';
 
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { FlightInfoComponent } from './search-form/search-result/flight-info/fli
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
     FlightSearchService

@@ -2,9 +2,9 @@ import { JourneyDetails } from '../entities/JourneyDetails';
 import { City } from '../entities/city';
 import { Flight } from '../entities/flight';
 import { ResultSet } from '../entities/result-set';
+import { HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class FlightSearchService {
   cities: City[] = [];
   result: ResultSet;
   resultObs: Observable<ResultSet>;
-  constructor(private _http: Http) { }
+  constructor(private _http: HttpClientModule) { }
   // get suggestions for entered key
   getSuggestions(queryString: string): City[] {
     if (this.cities && this.cities.length) {
@@ -30,8 +30,7 @@ export class FlightSearchService {
     }
   }
   getCities() {
-    return this._http.get('/assets/Cities.json')
-        .map(res => res.json());
+    return this._http.get<City[]>('/assets/Cities.json');
   }
   getCityFromCode (code: string): City {
     if (this.cities) {
@@ -45,8 +44,7 @@ export class FlightSearchService {
   }
   // get flights based on search
   setFlights(origin: string, destination: string, departDate: string, arriveDate: string) {
-    this._http.get('/assets/Flights.json')
-        .map(res => res.json())
+    this._http.get<JourneyDetails[]>('/assets/Flights.json')
         .subscribe(data => {
           this.result = {
             origin: this.getCityFromCode(origin),
