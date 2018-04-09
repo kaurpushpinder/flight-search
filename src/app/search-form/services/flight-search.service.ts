@@ -2,7 +2,7 @@ import { JourneyDetails } from '../entities/JourneyDetails';
 import { City } from '../entities/city';
 import { Flight } from '../entities/flight';
 import { ResultSet } from '../entities/result-set';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -13,7 +13,7 @@ export class FlightSearchService {
   cities: City[] = [];
   result: ResultSet;
   resultObs: Observable<ResultSet>;
-  constructor(private _http: HttpClientModule) { }
+  constructor(private _http: HttpClient) { }
   // get suggestions for entered key
   getSuggestions(queryString: string): City[] {
     if (this.cities && this.cities.length) {

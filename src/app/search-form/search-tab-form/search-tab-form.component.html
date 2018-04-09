@@ -1,31 +1,66 @@
 <div class="card row">
-
-	<div class="control-group">
-	  <label>From:</label>
-	  <input [formControl]="origin.code" class="form-control">
-	  <ul *ngIf="origin.suggestions">
-	  	<li *ngFor="let city of origin.suggestions">
-	  		<span (click)="onselectCity(city, origin)">{{city.code}} - {{city.name}}</span>
-	  	</li>
-	  </ul>
-	</div>
-	<div class="control-group">
-	  <label>To:</label>
-	  <input [formControl]="destination.code" class="form-control">
-	  <ul *ngIf="destination.suggestions">
-	  	<li *ngFor="let city of destination.suggestions">
-	  		<span (click)="onselectCity(city, destination)">{{city.code}} - {{city.name}}</span>
-	  	</li>
-	  </ul>
-	</div>
+	<ngb-tabset>
+	  <ngb-tab title="One way">
+	    <ng-template ngbTabContent>
+	      <div class="control-group">
+			  <input [formControl]="origin.code" class="form-control" placeholder="Enter origin city">
+			  <ul *ngIf="origin.suggestions">
+			  	<li *ngFor="let city of origin.suggestions">
+			  		<span (click)="onselectCity(city, origin)">{{city.code}} - {{city.name}}</span>
+			  	</li>
+			  </ul>
+		  </div>
+		  <div class="control-group">
+			  <input [formControl]="destination.code" class="form-control" placeholder="Enter origin city">
+			  <ul *ngIf="destination.suggestions">
+			  	<li *ngFor="let city of destination.suggestions">
+			  		<span (click)="onselectCity(city, destination)">{{city.code}} - {{city.name}}</span>
+			  	</li>
+			  </ul>
+		  </div>
+		
+		  <div class="control-group">
+			  <button
+			    class="btn btn-default"
+			    (click)="search()"
+			    [disabled]="!origin || !destination">
+			    Search
+			  </button>
+		  </div>
+	    </ng-template>
+	  </ngb-tab>
+	  <ngb-tab title="Retun">
+	    <ng-template ngbTabContent>
+	      <div class="control-group">
+			  <label>From:</label>
+			  <input [formControl]="origin.code" class="form-control">
+			  <ul *ngIf="origin.suggestions">
+			  	<li *ngFor="let city of origin.suggestions">
+			  		<span (click)="onselectCity(city, origin)">{{city.code}} - {{city.name}}</span>
+			  	</li>
+			  </ul>
+		  </div>
+		  <div class="control-group">
+			  <label>To:</label>
+			  <input [formControl]="destination.code" class="form-control">
+			  <ul *ngIf="destination.suggestions">
+			  	<li *ngFor="let city of destination.suggestions">
+			  		<span (click)="onselectCity(city, destination)">{{city.code}} - {{city.name}}</span>
+			  	</li>
+			  </ul>
+		  </div>
+		
+		  <div class="control-group">
+			  <button
+			    class="btn btn-default"
+			    (click)="search()"
+			    [disabled]="!origin || !destination">
+			    Search
+			  </button>
+		  </div>
+	    </ng-template>
+	  </ngb-tab>
+  </ngb-tabset>
 	
-	<div class="control-group">
-	  <button
-	    class="btn btn-default"
-	    (click)="search()"
-	    [disabled]="!origin || !destination">
-	    Search
-	  </button>
-	</div>
 </div>
 
