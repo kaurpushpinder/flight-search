@@ -13,6 +13,7 @@ import { SearchHeaderComponent } from './search-form/search-header/search-header
 import { SearchResultComponent } from './search-form/search-result/search-result.component';
 import { ResultCardComponent } from './search-form/search-result/result-card/result-card.component';
 import { FlightInfoComponent } from './search-form/search-result/flight-info/flight-info.component';
+import { SearchTabComponent } from './search-form/search-tab-form/search-tab.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FlightInfoComponent } from './search-form/search-result/flight-info/fli
     SearchHeaderComponent,
     SearchResultComponent,
     ResultCardComponent,
-    FlightInfoComponent
+    FlightInfoComponent,
+    SearchTabComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+.journey-detail {
+    border: 1px solid #222;
+    padding: 15px;
+    margin: 10px;
+    .data {
+	    width: 70%;
+	    display: inline-block;
+	}
+	.action {
+	    width: 28%;
+	    display: inline-block;
+	    div {
+	    	display: block;
+	    	&.icon {
+	    		height: 100px;
+	    	}
+	    	&.button {
+	    		background-color: #eee;
+	    		padding: 10px;
+	    		text-align: center;
+	    	}
+	    }
+	}
+}

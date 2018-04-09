@@ -4,6 +4,7 @@ import { Flight } from '../entities/flight';
 import { ResultSet } from '../entities/result-set';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -43,18 +44,48 @@ export class FlightSearchService {
     }
   }
   // get flights based on search
-  setFlights(origin: string, destination: string, departDate: string, arriveDate: string) {
-    this._http.get<JourneyDetails[]>('/assets/Flights.json')
+  setFlights(origin: string, destination: string, departDate: NgbDateStruct, arriveDate: NgbDateStruct) {
+    let startFlights: Flight[];
+    this._http.get<Flight[]>('/assets/Flights.json')
         .subscribe(data => {
-          this.result = {
-            origin: this.getCityFromCode(origin),
-            destination: this.getCityFromCode(destination),
-            departDate: departDate,
-            isReturn: arriveDate ? true : false,
-            returnDate: arriveDate,
-            resultSet: data
-          };
+          startFlights = data;
+          if (arriveDate) {
+            this._http.get<Flight[]>('/assets/Flights.json')
+            .subscribe(data => {
+              this.result = {
+                origin: this.getCityFromCode(origin),
+                destination: this.getCityFromCode(destination),
+                departDate: this.getFancyDate(departDate),
+                isReturn: arriveDate ? true : false,
+                returnDate: arriveDate ? this.getFancyDate(arriveDate) : null,
+                resultSet: this.createJourneys(startFlights, data)
+              };
+            });
+          } else {
+            this.result = {
+                origin: this.getCityFromCode(origin),
+                destination: this.getCityFromCode(destination),
+                departDate: this.getFancyDate(departDate),
+                isReturn: arriveDate ? true : false,
+                returnDate: arriveDate ? this.getFancyDate(arriveDate) : null,
+                resultSet: this.createJourneys(startFlights, [new Flight()])
+              };
+          }
         });
+  }
+  createJourneys(startFlights: Flight[], arriveFlights: Flight[]): JourneyDetails[] {
+    let journeys: JourneyDetails[] = [];
+    for (let i = 0; i < startFlights.length; i++) {
+      for (let j = 0; j < arriveFlights.length; j++) {
+        journeys.push({
+          startJourney: startFlights[i],
+          returnJourney: arriveFlights[j].origin ? arriveFlights[j] : null,
+          price: startFlights[i].price + (arriveFlights[j].price ? arriveFlights[j].price : 0)
+        });
+      }
+    }
+    console.log(journeys);
+    return journeys;
   }
   // return result meta data
   getResultMetaData(): ResultSet {
@@ -65,5 +96,8 @@ export class FlightSearchService {
     if (this.result && this.result.resultSet) {
       return this.result.resultSet;
     }
+  }
+  getFancyDate(dateVar: NgbDateStruct): string {
+    return dateVar.day.toString() + '-' + dateVar.month.toString() + '-' + dateVar.year.toString();
   }
 }

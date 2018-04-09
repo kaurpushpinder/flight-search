@@ -10,12 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-header.component.scss']
 })
 export class SearchHeaderComponent implements OnInit {
-  result: ResultSet;
 
   constructor(private flightService: FlightSearchService) { }
 
   ngOnInit() {
-    this.result = this.flightService.getResultMetaData();
   }
 
+  get result(): ResultSet {
+    return this.flightService.getResultMetaData();
+  }
 }

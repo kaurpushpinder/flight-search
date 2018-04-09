@@ -1,0 +1,46 @@
+<form class="search-form">
+	<div class="control-group">
+		<input [formControl]="origin.code" class="form-control"
+			placeholder="Enter origin city">
+		<ul *ngIf="origin.suggestions">
+			<li *ngFor="let city of origin.suggestions"
+				(click)="onselectCity(city, origin)">{{city.code}} -
+					{{city.name}}</li>
+		</ul>
+	</div>
+	<div class="control-group">
+		<input [formControl]="destination.code" class="form-control"
+			placeholder="Enter origin city">
+		<ul *ngIf="destination.suggestions">
+			<li *ngFor="let city of destination.suggestions"
+				(click)="onselectCity(city, destination)">{{city.code}} -
+					{{city.name}}</li>
+		</ul>
+	</div>
+	<div class="control-group">
+		<div class="input-group">
+	      <input class="form-control" placeholder="Departure date"
+	             name="dp" [(ngModel)]="departureDate" ngbDatepicker #d="ngbDatepicker">
+	      <div class="input-group-append">
+	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+	        </button>
+	      </div>
+	    </div>
+	</div>
+	<div class="control-group" *ngIf="isReturn">
+		<div class="input-group">
+	      <input class="form-control" placeholder="Return date"
+	             name="dp" [(ngModel)]="arrivalDate" ngbDatepicker #d="ngbDatepicker">
+	      <div class="input-group-append">
+	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+	        </button>
+	      </div>
+	    </div>
+	</div>
+	<div class="control-group">
+		<button class="btn btn-default" (click)="search()"
+			[disabled]="!origin || !destination">Search</button>
+	</div>
+</form>
