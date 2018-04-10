@@ -1,0 +1,14 @@
+::ng-deep .search-result-header {
+	padding: 10px;
+	h3 {
+		display: inline;
+	}
+	p {
+		display: inline-block;
+		vertical-align: top;
+		float: right;
+		span {
+			display: block;
+		}
+	}
+}

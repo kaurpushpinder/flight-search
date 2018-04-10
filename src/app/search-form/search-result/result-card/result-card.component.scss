@@ -5,6 +5,10 @@
     .data {
 	    width: 70%;
 	    display: inline-block;
+	    float: left;
+	    div {
+	    	float: left;
+	    }
 	}
 	.action {
 	    width: 28%;

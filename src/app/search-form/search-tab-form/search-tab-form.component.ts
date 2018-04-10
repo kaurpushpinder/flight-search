@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { City } from '../entities/city';
-import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 export interface SuggestionElem {
     code: FormControl;
+    codeVal: string;
     suggestions: City[];
 }
 @Component({
@@ -16,12 +17,14 @@ export class SearchTabFormComponent implements OnInit {
   constructor() {
   }
   origin: SuggestionElem = {
-    code: new FormControl(),
-    suggestions: []
+    code: new FormControl('', [Validators.required]),
+    suggestions: [],
+    codeVal: ''
   };
   destination: SuggestionElem = {
     code: new FormControl(),
-    suggestions: []
+    suggestions: [],
+    codeVal: ''
   };
   departureDate: NgbDateStruct;
   ngOnInit() {

@@ -1,7 +1,7 @@
-<form class="search-form">
+<form class="search-form" [formGroup]="searchForm">
 	<div class="control-group">
-		<input [formControl]="origin.code" class="form-control"
-			placeholder="Enter origin city">
+		<input [formControl]="origin.code" class="form-control" formControlName="originCode"
+			placeholder="Enter origin city" required>
 		<ul *ngIf="origin.suggestions">
 			<li *ngFor="let city of origin.suggestions"
 				(click)="onselectCity(city, origin)">{{city.code}} -
@@ -9,8 +9,8 @@
 		</ul>
 	</div>
 	<div class="control-group">
-		<input [formControl]="destination.code" class="form-control"
-			placeholder="Enter origin city">
+		<input [formControl]="destination.code" class="form-control" formControlName="destinationCode"
+			placeholder="Enter origin city"  required>
 		<ul *ngIf="destination.suggestions">
 			<li *ngFor="let city of destination.suggestions"
 				(click)="onselectCity(city, destination)">{{city.code}} -
@@ -19,8 +19,8 @@
 	</div>
 	<div class="control-group">
 		<div class="input-group">
-	      <input class="form-control" placeholder="Departure date"
-	             name="dp" [(ngModel)]="departureDate" ngbDatepicker #d="ngbDatepicker">
+	      <input class="form-control" placeholder="Departure date" formControlName="departureDt" [minDate]="today"
+	             name="dp" [(ngModel)]="departureDate" ngbDatepicker #d="ngbDatepicker"  required>
 	      <div class="input-group-append">
 	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
 	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -30,8 +30,8 @@
 	</div>
 	<div class="control-group" *ngIf="isReturn">
 		<div class="input-group">
-	      <input class="form-control" placeholder="Return date"
-	             name="dp" [(ngModel)]="arrivalDate" ngbDatepicker #d="ngbDatepicker">
+	      <input class="form-control" placeholder="Return date" formControlName="arrivalDt" [minDate]="departureDate"
+	             name="dp" [(ngModel)]="arrivalDate" ngbDatepicker #d="ngbDatepicker"  required>
 	      <div class="input-group-append">
 	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
 	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -40,7 +40,6 @@
 	    </div>
 	</div>
 	<div class="control-group">
-		<button class="btn btn-default" (click)="search()"
-			[disabled]="!origin || !destination">Search</button>
+		<button class="btn btn-default" (click)="search()">Search</button>
 	</div>
 </form>

@@ -7,5 +7,5 @@ export class ResultSet {
     departDate: string;
     isReturn: boolean;
     returnDate: string;
-    resultSet: JourneyDetails[];
+    journeys: JourneyDetails[];
 }

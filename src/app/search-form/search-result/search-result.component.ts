@@ -1,4 +1,5 @@
 import { JourneyDetails } from '../entities/JourneyDetails';
+import { ResultSet } from '../entities/result-set';
 import { FlightSearchService } from '../services/flight-search.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,5 +13,8 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
   }
-  get journeys(): JourneyDetails[] { return this.flightService.getJourneys(); }
+  get journeys(): JourneyDetails[] { return this.result ? this.result.journeys : []; }
+  get result(): ResultSet {
+    return this.flightService.getResultMetaData();
+  }
 }
