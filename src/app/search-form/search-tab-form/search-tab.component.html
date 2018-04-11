@@ -2,7 +2,8 @@
 	<div class="control-group">
 		<input [formControl]="origin.code" class="form-control" formControlName="originCode"
 			placeholder="Enter origin city" required>
-		<ul *ngIf="origin.suggestions">
+		<span class="error-message">{{originError}}</span>
+		<ul *ngIf="origin.suggestions && origin.suggestions.length">
 			<li *ngFor="let city of origin.suggestions"
 				(click)="onselectCity(city, origin)">{{city.code}} -
 					{{city.name}}</li>
@@ -11,33 +12,36 @@
 	<div class="control-group">
 		<input [formControl]="destination.code" class="form-control" formControlName="destinationCode"
 			placeholder="Enter origin city"  required>
-		<ul *ngIf="destination.suggestions">
+		<span class="error-message">{{destinationError}}</span>
+		<ul *ngIf="destination.suggestions && destination.suggestions.length">
 			<li *ngFor="let city of destination.suggestions"
 				(click)="onselectCity(city, destination)">{{city.code}} -
 					{{city.name}}</li>
 		</ul>
 	</div>
 	<div class="control-group">
-		<div class="input-group">
+		<div class="input-group" [ngClass]="{'error': departureDt.invalid && (departureDt.dirty || departureDt.touched)}">
 	      <input class="form-control" placeholder="Departure date" formControlName="departureDt" [minDate]="today"
-	             name="dp" [(ngModel)]="departureDate" ngbDatepicker #d="ngbDatepicker"  required>
+	             name="dp" [formControl]="departureDateControl" ngbDatepicker #d="ngbDatepicker"  required>
 	      <div class="input-group-append">
 	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
 	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
 	        </button>
 	      </div>
 	    </div>
+	    <span class="error-message">{{departureDateError}}</span>
 	</div>
 	<div class="control-group" *ngIf="isReturn">
-		<div class="input-group">
-	      <input class="form-control" placeholder="Return date" formControlName="arrivalDt" [minDate]="departureDate"
-	             name="dp" [(ngModel)]="arrivalDate" ngbDatepicker #d="ngbDatepicker"  required>
+		<div class="input-group" [ngClass]="{'error': arrivalDt.invalid && (arrivalDt.dirty || arrivalDt.touched)}">
+	      <input class="form-control" placeholder="Return date" formControlName="arrivalDt" [minDate]="departureDateControl.value"
+	             name="dp" [(ngModel)]="arrivalDate" ngbDatepicker #d="ngbDatepicker">
 	      <div class="input-group-append">
 	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
 	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
 	        </button>
 	      </div>
 	    </div>
+	    <span class="error-message">{{arrivalDateError}}</span>
 	</div>
 	<div class="control-group">
 		<button class="btn btn-default" (click)="search()">Search</button>

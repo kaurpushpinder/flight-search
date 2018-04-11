@@ -13,7 +13,7 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
   }
-  get journeys(): JourneyDetails[] { return this.result ? this.result.journeys : []; }
+  get journeys(): JourneyDetails[] { return this.flightService.getJourneys(); }
   get result(): ResultSet {
     return this.flightService.getResultMetaData();
   }

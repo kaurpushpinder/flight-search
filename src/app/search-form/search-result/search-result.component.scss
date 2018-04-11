@@ -1,5 +1,6 @@
 ::ng-deep .search-result-header {
-	padding: 10px;
+	padding: 20px 10px;
+	border-bottom: 1px solid #222;
 	h3 {
 		display: inline;
 	}
@@ -11,4 +12,7 @@
 			display: block;
 		}
 	}
+}
+.result-set {
+	padding: 10px;
 }

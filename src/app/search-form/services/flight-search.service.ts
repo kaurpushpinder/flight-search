@@ -2,6 +2,7 @@ import { JourneyDetails } from '../entities/JourneyDetails';
 import { City } from '../entities/city';
 import { Flight } from '../entities/flight';
 import { ResultSet } from '../entities/result-set';
+import { HttpParams } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +14,7 @@ export class FlightSearchService {
 
   cities: City[] = [];
   result: ResultSet;
-  resultObs: Observable<ResultSet>;
+  filteredJourneys: JourneyDetails[];
   constructor(private _http: HttpClient) { }
   // get suggestions for entered key
   getSuggestions(queryString: string): City[] {
@@ -48,7 +49,10 @@ export class FlightSearchService {
   // get flights based on search
   setFlights(origin: string, destination: string, departDate: NgbDateStruct, arriveDate: NgbDateStruct) {
     let startFlights: Flight[];
-    this._http.get<Flight[]>('/assets/Flights.json')
+    this.result = null;
+    const params = new HttpParams().set("origin", origin).set("destination", destination)
+            .set("departDate", this.getFancyDate(departDate)).set("arriveDate", this.getFancyDate(arriveDate));
+    this._http.get<Flight[]>('/assets/Flights.json', {params: params})
         .subscribe(data => {
           startFlights = data;
           if (arriveDate) {
@@ -73,7 +77,8 @@ export class FlightSearchService {
                 journeys: this.createJourneys(startFlights, null)
               };
           }
-        });
+        },
+        error => console.log(error));
   }
   createJourneys(startFlights: Flight[], arriveFlights: Flight[]): JourneyDetails[] {
     const journeys: JourneyDetails[] = [];
@@ -88,33 +93,41 @@ export class FlightSearchService {
         j++;
       } while (arriveFlights && j < arriveFlights.length);
     }
+    this.filteredJourneys = journeys;
     console.log(journeys);
     return journeys;
   }
   // return result meta data
   getResultMetaData(): ResultSet {
+    //debugger;
     return this.result;
   }
-  // return already set flight data
   getJourneys(): JourneyDetails[] {
-    if (this.result && this.result.journeys) {
-      return this.result.journeys;
-    }
+    return this.filteredJourneys;
   }
   getFancyDate(dateVar: NgbDateStruct): string {
-    return dateVar.day.toString() + '-' + dateVar.month.toString() + '-' + dateVar.year.toString();
+    return dateVar ? dateVar.day.toString() + '-' + dateVar.month.toString() + '-' + dateVar.year.toString() : '';
   }
   filterResults(priceRange: Number[]) {
-    this.result = {
-                origin: this.result.origin,
-                destination: this.result.destination,
-                departDate: this.result.departDate,
-                isReturn: this.result.isReturn,
-                returnDate: this.result.returnDate,
-                journeys: this.result.journeys.filter( function(journey) {
-                            return (journey.price >= priceRange[0] &&
-                              journey.price <= priceRange[1]);
-                          } )
-              };
+     this.filteredJourneys =  this.result.journeys.filter( function(journey) {
+                    return (journey.price >= priceRange[0] &&
+                        journey.price <= priceRange[1]);
+                    } );
+  }
+  getPriceRange(): Number[] {
+    const priceRange: Number[] = [0, 0];
+    if (this.result && this.result.journeys) {
+      priceRange[0] = this.result.journeys[0].price;
+      priceRange[1] = this.result.journeys[0].price;
+      for (let i = 1; i < this.result.journeys.length; i++) {
+        const journey = this.result.journeys[i];
+        if ( priceRange[0] > journey.price ) {
+          priceRange[0] = journey.price;
+        } else if ( priceRange[1] < journey.price ) {
+          priceRange[1] = journey.price;
+        }
+      }
+    }
+    return priceRange;
   }
 }

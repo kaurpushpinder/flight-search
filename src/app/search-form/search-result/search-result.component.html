@@ -3,4 +3,7 @@
 	<div class="result-card" *ngFor="let detail of journeys">
 		<app-result-card  [journey]="detail"></app-result-card>
 	</div>
+	<div class="no-result" *ngIf="!journeys || journeys.length === 0">
+		<h3>No result to display</h3>
+	</div>
 </div>

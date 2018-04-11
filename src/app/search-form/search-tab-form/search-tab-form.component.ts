@@ -27,6 +27,7 @@ export class SearchTabFormComponent implements OnInit {
     codeVal: ''
   };
   departureDate: NgbDateStruct;
+  departureDateControl: FormControl = new FormControl(this.departureDate, [Validators.required]);
   ngOnInit() {
   }
 }

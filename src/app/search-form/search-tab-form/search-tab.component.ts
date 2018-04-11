@@ -17,9 +17,13 @@ export class SearchTabComponent implements OnInit {
   @Input() isReturn: boolean;
   @Input() origin: SuggestionElem;
   @Input() destination: SuggestionElem;
-  @Input() departureDate: NgbDateStruct;
+  @Input() departureDateControl: FormControl;
   arrivalDate: NgbDateStruct;
   searchForm: FormGroup;
+  originError = 'Please type and select origin';
+  destinationError = 'Please type and select destination';
+  departureDateError = 'Please select departure date';
+  arrivalDateError = 'Please select arrival date';
  constructor(private flightService: FlightSearchService) {
   }
 
@@ -27,7 +31,7 @@ export class SearchTabComponent implements OnInit {
     this.searchForm = new FormGroup ({
       originCode: this.origin.code,
       destinationCode: this.destination.code,
-      departureDt: new FormControl(this.departureDate, [Validators.required])
+      departureDt: this.departureDateControl
     });
     this.origin.code.valueChanges
      .debounceTime(200)
@@ -62,11 +66,39 @@ export class SearchTabComponent implements OnInit {
     elem.suggestions = [];
   }
   search (): void {
+    Object.keys(this.searchForm.controls).forEach(field => {
+      const control = this.searchForm.get(field);
+      if (control instanceof FormControl) {
+        if (field === 'originCode' && this.origin.code.value) {
+          if (this.origin.code.value !== this.origin.codeVal) {
+            this.originError = 'Inalid code. Select from the suggestions.';
+            control.setErrors({
+               notValid: true
+            });
+          }
+        }
+        if (field === 'destinationCode'&& this.destination.code.value) {
+          if (this.destination.code.value !== this.destination.codeVal) {
+            this.destinationError = 'Inalid code. Select from the suggestions.';
+            control.setErrors({
+               notValid: true
+            });
+          }
+          if (this.origin.codeVal === this.destination.codeVal) {
+            this.destinationError = 'Origin and destination can not be same';
+            control.setErrors({
+               notValid: true
+            });
+          }
+        }
+        control.markAsTouched({ onlySelf: true });
+      }
+    });
     if (this.searchForm.valid) {
-      console.log(this.origin.code.value);
-      console.log(this.destination.code.value);
-      this.flightService.setFlights(this.origin.code.value, this.destination.code.value, this.departureDate,
+      this.flightService.setFlights(this.origin.code.value, this.destination.code.value, this.departureDateControl.value,
         (this.isReturn ? this.arrivalDate : null));
     }
   }
+  get arrivalDt() { return this.searchForm.get('arrivalDt'); }
+  get departureDt() { return this.searchForm.get('departureDt'); }
 }
