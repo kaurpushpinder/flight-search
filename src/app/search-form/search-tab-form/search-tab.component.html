@@ -44,6 +44,11 @@
 	    <span class="error-message">{{arrivalDateError}}</span>
 	</div>
 	<div class="control-group">
+		<input type="number" min="1" [formControl]="passengers" class="form-control" formControlName="passengers"
+			placeholder="Passengers" required>
+		<span class="error-message">{{passengerError}}</span>
+	</div>
+	<div class="control-group">
 		<button class="btn btn-default" (click)="search()">Search</button>
 	</div>
 </form>

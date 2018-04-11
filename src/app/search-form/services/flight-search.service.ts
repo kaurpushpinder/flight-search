@@ -47,11 +47,13 @@ export class FlightSearchService {
     }
   }
   // get flights based on search
-  setFlights(origin: string, destination: string, departDate: NgbDateStruct, arriveDate: NgbDateStruct) {
+  setFlights(origin: string, destination: string, departDate: NgbDateStruct, arriveDate: NgbDateStruct, 
+    numPassengers: number) {
     let startFlights: Flight[];
     this.result = null;
     const params = new HttpParams().set("origin", origin).set("destination", destination)
-            .set("departDate", this.getFancyDate(departDate)).set("arriveDate", this.getFancyDate(arriveDate));
+            .set("departDate", this.getFancyDate(departDate)).set("arriveDate", this.getFancyDate(arriveDate))
+            .set("numPassengers", (numPassengers + ''));
     this._http.get<Flight[]>('/assets/Flights.json', {params: params})
         .subscribe(data => {
           startFlights = data;
@@ -64,7 +66,7 @@ export class FlightSearchService {
                 departDate: this.getFancyDate(departDate),
                 isReturn: arriveDate ? true : false,
                 returnDate: arriveDate ? this.getFancyDate(arriveDate) : null,
-                journeys: this.createJourneys(startFlights, resp)
+                journeys: this.createJourneys(startFlights, resp, numPassengers)
               };
             });
           } else {
@@ -74,13 +76,13 @@ export class FlightSearchService {
                 departDate: this.getFancyDate(departDate),
                 isReturn: arriveDate ? true : false,
                 returnDate: arriveDate ? this.getFancyDate(arriveDate) : null,
-                journeys: this.createJourneys(startFlights, null)
+                journeys: this.createJourneys(startFlights, null, numPassengers)
               };
           }
         },
         error => console.log(error));
   }
-  createJourneys(startFlights: Flight[], arriveFlights: Flight[]): JourneyDetails[] {
+  createJourneys(startFlights: Flight[], arriveFlights: Flight[], numPassengers: number): JourneyDetails[] {
     const journeys: JourneyDetails[] = [];
     for (let i = 0; i < startFlights.length; i++) {
       let j = 0;
@@ -88,7 +90,8 @@ export class FlightSearchService {
         journeys.push({
           startJourney: startFlights[i],
           returnJourney: arriveFlights ? arriveFlights[j] : null,
-          price: startFlights[i].price + (arriveFlights && arriveFlights[j].price ? arriveFlights[j].price : 0)
+          price: (startFlights[i].price +
+            (arriveFlights && arriveFlights[j].price ? arriveFlights[j].price : 0)) * numPassengers
         });
         j++;
       } while (arriveFlights && j < arriveFlights.length);

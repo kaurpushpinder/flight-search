@@ -18,12 +18,14 @@ export class SearchTabComponent implements OnInit {
   @Input() origin: SuggestionElem;
   @Input() destination: SuggestionElem;
   @Input() departureDateControl: FormControl;
+  @Input() passengers: FormControl;
   arrivalDate: NgbDateStruct;
   searchForm: FormGroup;
   originError = 'Please type and select origin';
   destinationError = 'Please type and select destination';
   departureDateError = 'Please select departure date';
   arrivalDateError = 'Please select arrival date';
+  passengerError = 'Please enter number of passengers';
  constructor(private flightService: FlightSearchService) {
   }
 
@@ -31,7 +33,8 @@ export class SearchTabComponent implements OnInit {
     this.searchForm = new FormGroup ({
       originCode: this.origin.code,
       destinationCode: this.destination.code,
-      departureDt: this.departureDateControl
+      departureDt: this.departureDateControl,
+      passengers: this.passengers
     });
     this.origin.code.valueChanges
      .debounceTime(200)
@@ -96,7 +99,7 @@ export class SearchTabComponent implements OnInit {
     });
     if (this.searchForm.valid) {
       this.flightService.setFlights(this.origin.code.value, this.destination.code.value, this.departureDateControl.value,
-        (this.isReturn ? this.arrivalDate : null));
+        (this.isReturn ? this.arrivalDate : null), this.passengers.value);
     }
   }
   get arrivalDt() { return this.searchForm.get('arrivalDt'); }
