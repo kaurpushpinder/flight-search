@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class FlightSearchService {
@@ -28,7 +27,7 @@ export class FlightSearchService {
     }
   }
   filteredCities (cities: City[], queryString: string): City[] {
-    return this.cities.filter( function(item) {
+    return cities.filter( function(item) {
       return (item.name.toLowerCase().indexOf(queryString.toLowerCase()) > -1
         || item.code.toLowerCase().indexOf(queryString.toLowerCase()) > -1);
     } );
@@ -47,7 +46,7 @@ export class FlightSearchService {
     }
   }
   // get flights based on search
-  setFlights(origin: string, destination: string, departDate: NgbDateStruct, arriveDate: NgbDateStruct, 
+  setFlights(origin: string, destination: string, departDate: NgbDateStruct, arriveDate: NgbDateStruct,
     numPassengers: number) {
     let startFlights: Flight[];
     this.result = null;
