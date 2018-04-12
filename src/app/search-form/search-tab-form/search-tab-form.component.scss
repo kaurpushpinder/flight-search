@@ -62,6 +62,9 @@
 				}
 			}
 		}
+		.form-control[readonly] {
+		    background-color: transparent;
+		}
 		.input-group {
 			~ span {
 				display: none;

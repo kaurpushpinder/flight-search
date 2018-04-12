@@ -1,8 +1,8 @@
 <div class="journey-detail">
 <div class="data">
 	<h1 class="price">Rs. {{journey.price}}</h1>
-	<div class="col-lg-6"><app-flight-info [flight]="journey.startJourney"></app-flight-info></div>
-	<div class="col-lg-6" *ngIf="journey.returnJourney"><app-flight-info [flight]="journey.returnJourney"></app-flight-info></div>
+	<div class="col-lg-6 col-md-6"><app-flight-info [flight]="journey.startJourney"></app-flight-info></div>
+	<div class="col-lg-6 col-md-6" *ngIf="journey.returnJourney"><app-flight-info [flight]="journey.returnJourney"></app-flight-info></div>
 </div>
 <div class="action">
 	<div class="icon"></div>

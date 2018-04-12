@@ -22,7 +22,7 @@
 	<div class="control-group">
 		<div class="input-group" [ngClass]="{'error': departureDt.invalid && (departureDt.dirty || departureDt.touched)}">
 	      <input class="form-control" placeholder="Departure date" formControlName="departureDt" [minDate]="today"
-	             name="dp" [formControl]="departureDateControl" ngbDatepicker #d="ngbDatepicker"  required>
+	             name="dp" [formControl]="departureDateControl" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker"  readonly>
 	      <div class="input-group-append">
 	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
 	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -34,7 +34,7 @@
 	<div class="control-group" *ngIf="isReturn">
 		<div class="input-group" [ngClass]="{'error': arrivalDt.invalid && (arrivalDt.dirty || arrivalDt.touched)}">
 	      <input class="form-control" placeholder="Return date" formControlName="arrivalDt" [minDate]="departureDateControl.value"
-	             name="dp" [(ngModel)]="arrivalDate" ngbDatepicker #d="ngbDatepicker">
+	             name="dp" [(ngModel)]="arrivalDate" (click)="d.toggle()" ngbDatepicker #d="ngbDatepicker" readonly>
 	      <div class="input-group-append">
 	        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
 	          <img src="assets/ico-down-filled.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>

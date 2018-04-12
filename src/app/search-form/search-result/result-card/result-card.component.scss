@@ -8,6 +8,7 @@
 	    float: left;
 	    div {
 	    	float: left;
+	    	padding-left: 0;
 	    }
 	}
 	.action {
@@ -27,5 +28,17 @@
 	    		text-align: center;
 	    	}
 	    }
+	}
+}
+
+@media (max-width: 767px) {
+	.journey-detail {
+		float: left;
+		.data div{
+			border-bottom: 1px solid #eee;
+		}
+		.action .icon {
+    		display: none;
+    	}
 	}
 }
