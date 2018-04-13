@@ -11,7 +11,7 @@
 	</div>
 	<div class="control-group">
 		<input [formControl]="destination.code" class="form-control" formControlName="destinationCode"
-			placeholder="Enter origin city"  required>
+			placeholder="Enter destination city"  required>
 		<span class="error-message">{{destinationError}}</span>
 		<ul *ngIf="destination.suggestions && destination.suggestions.length">
 			<li *ngFor="let city of destination.suggestions"
